@@ -1,0 +1,149 @@
+<!doctype html>
+	<html lang="ru">
+		<head>
+			<meta charset="utf-8">
+			<title> First Web-page </title>
+			<base href="imges/">
+			<style>
+				.site{
+					display: flex;
+					flex-direction: column;
+					text-align:center;
+					padding: 50px 100px;
+					background-color:yellow;
+				}
+				
+				.header{
+					border: 1px gray solid;
+					background-color:yellow;
+				}
+				
+				.content{
+					display: flex;
+					flex-direction: row;
+					text-align: left;
+				}
+				
+				.column{
+					flex: 1;
+					border: 1px gray solid;
+					padding:10px;
+				}
+				
+				.footer{
+					border: 1px gray solid;
+					background-color:red;
+				}
+				
+				.services{
+					margin-top:20px;
+				}
+				
+				.block{
+					padding-left:20px;
+				}
+				
+				.answerBox{
+					margin-top: 20px;
+					width: 300px;
+					height: 100px;
+					border: 1px black solid;
+					overflow: scroll;
+				}
+				
+			</style>
+		</head>
+		<body>
+			<div class="site">
+				<div class="header">
+					<p style="font-size:x-large">
+						<b>Творчество японских художников <br> Кацусика Хокусай! </b>
+					</p>
+				</div>
+				<div class="content">
+					<div class="column">
+						<h1> Гейша </h1>
+						<img src="Geysha-Hokusay.jpg" alt="Geysha" width="250"/>
+					</div>
+					<div class="column">
+						<span> БИОГРАФИЯ </span>
+						<br>
+						<p> Кацусика Хокусай (яп. 葛飾 北斎); 31 октября 1760, Эдо — 10 мая 1849, там же) — широко известный японский художник укиё-э, иллюстратор, гравёр периода Эдо. Работал под множеством псевдонимов. Является одним из самых известных на Западе японских гравёров, мастер завершающего периода японской ксилографии.
+
+Хокусай использовал не менее тридцати псевдонимов на протяжении своей жизни. Несмотря на то, что использование псевдонимов было обычной практикой у японских художников того времени, по числу псевдонимов он существенно превосходит других известных авторов. Псевдонимы Хокусая нередко используются для периодизации этапов его творчества.
+						</p>
+						<br>
+						<a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D1%86%D1%83%D1%81%D0%B8%D0%BA%D0%B0_%D0%A5%D0%BE%D0%BA%D1%83%D1%81%D0%B0%D0%B9#cite_note-1" target="_blank"> Больше узнать о сенсее Хокусае </a>
+					</div>
+					<div class="column">
+						<i> WE NEED TO GO DIPPER </i>
+						<br> <br>
+						<fieldset>
+							<legend> ОПРОСИК </legend>
+							<form method="post" action="fakeReference">
+								<p>
+									<label> Оцените сайт: </label>
+									<input type="text" name="answer"/>
+									<br> <br>
+									<label> Респект от шефа: </label>
+									<br>
+									<input type="checkbox" name="ok" />
+									<br> <br> <br>
+									<input type="submit" value="Отправить" />
+								</p>
+							</form>
+						</fieldset>
+					</div>
+					<div class="column">
+						<div class="services">
+							<div class="block">
+								<h3> Tokyo time (JSON) </h3>
+								<button id="async1"> Go request! </button>
+								<div class="answerBox" id="answerBox1"> </div>
+							</div>
+							<div class="block">
+								<h3> RANDOM HISTORY FACT </h3>
+								<button id="async2"> Go request! </button>
+								<div class="answerBox" id="answerBox2"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer"> ALL RIGHTS RESERVED (ofc...) </div>
+			</div>
+			
+			<script>
+			/*==============Get Tokyo Time Service========*/
+			var responseInfo1 = document.getElementById("answerBox1");
+			var request1 = new XMLHttpRequest();
+			document.getElementById("async1").addEventListener('click', asyncRequest1);
+				
+			function asyncRequest1(){
+				request1.onload = function() {
+					if (request1.status == 200)
+						responseInfo1.innerText = request1.responseText;
+					else
+						responseInfo1.innerText = request1.statusText;
+				}
+				request1.open("GET", " http://worldtimeapi.org/api/timezone/Asia/Tokyo", true);
+				request1.send();
+			}
+			/*================Get Hystory Fact Service =============================*/
+			
+			var responseInfo2 = document.getElementById("answerBox2");
+			var request2 = new XMLHttpRequest();
+			document.getElementById("async2").addEventListener('click', asyncRequest2);
+				
+			function asyncRequest2(){
+				request2.onload = function() {
+					if (request2.status == 200)
+						responseInfo2.innerText = request2.responseText;
+					else
+						responseInfo2.innerText = request2.statusText;
+				}
+				request2.open("GET", "http://numbersapi.com/1/date", true);
+				request2.send();
+			}
+			</script>
+		</body>
+	</html>
