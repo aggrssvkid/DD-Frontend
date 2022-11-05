@@ -28,6 +28,7 @@
 					flex: 1;
 					border: 1px gray solid;
 					padding:10px;
+					overflow:hidden;
 				}
 				
 				.footer{
@@ -40,12 +41,12 @@
 				}
 				
 				.block{
-					padding-left:20px;
+					padding-left:5px;
 				}
 				
 				.answerBox{
 					margin-top: 20px;
-					width: 300px;
+					width: 200px;
 					height: 100px;
 					border: 1px black solid;
 					overflow: scroll;
@@ -97,7 +98,7 @@
 					<div class="column">
 						<div class="services">
 							<div class="block">
-								<h3> Tokyo time (JSON) </h3>
+								<h3> Tokyo dateTime </h3>
 								<button id="async1"> Go request! </button>
 								<div class="answerBox" id="answerBox1"> </div>
 							</div>
@@ -121,7 +122,11 @@
 			function asyncRequest1(){
 				request1.onload = function() {
 					if (request1.status == 200)
-						responseInfo1.innerText = request1.responseText;
+					{
+						var txt = JSON.parse(request1.responseText);
+						console.log(txt);
+						responseInfo1.innerText = txt.datetime;
+					}
 					else
 						responseInfo1.innerText = request1.statusText;
 				}
